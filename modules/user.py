@@ -19,3 +19,33 @@ def get_user(**kwargs):
     except User.DoesNotExist:
         print("User does not exists in database")
         return None
+
+
+def update_user(email, new_values):
+    if not new_values:
+        print("Invalid parameters")
+        return None
+
+    try:
+        query = User.update(new_values).where(User.email == email)
+        query.execute()
+        return 'User updated'
+
+    except User.DoesNotExist:
+        print("User does not exists in database")
+        return None
+
+    except ValueError as e:
+        print('User could not be updated: ')
+        print(e.args[0])
+        return None
+
+
+def delete_user(email):
+    try:
+        user = User.get(email=email)
+        user.delete_instance()
+        return 'User ' + email + ' deleted'
+    except User.DoesNotExist:
+        print("User does not exists in database")
+        return None
