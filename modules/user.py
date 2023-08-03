@@ -27,7 +27,7 @@ def update_user(email, new_values):
         return None
 
     try:
-        query = User.update(new_values).where(User.email == email)
+        query = User.update(new_values).where(email == email)
         query.execute()
         return 'User updated'
 
