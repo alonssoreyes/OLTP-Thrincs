@@ -1,6 +1,22 @@
 from models import Account
 from peewee import *
 
+# Create account
+# test_user = get_user(email='alonso.reyes@gmail.com')
+# print(create_account(user=test_user, balance=63000))
+# print(create_user("Alonso Reyes", "alonssoreyes@gmail.com", "3312233456"))
+
+# Get account
+# print(get_account(user=test_user))
+
+# Update account
+# print(update_acount(user=test_user, new_values={'balance': 5000}))
+# print(get_account(user=test_user))
+
+# Delete account
+# print(delete_account(user=test_user))
+# print(get_account(user=test_user))
+
 
 def create_account(user, balance):
     try:

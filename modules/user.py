@@ -2,6 +2,21 @@ from models import User
 from peewee import *
 
 
+# Create User
+# print(create_user("Alonso Reyes", "alonssoreyes@gmail.com", "3312233456"))
+
+# Get User
+# print(get_user(email="alonssoreyes@gmail.com"))
+
+# Update user
+# print(update_user(email="alonssoreyes@gmail.com",
+#      new_values={'email': 'alonso.r@gmail.com'}))
+
+# Delete User
+# print(delete_user(email="alonso.r@gmail.com"))
+# print(get_user(email="alonso.r@gmail.com"))
+
+
 def create_user(name, email, phone):
     try:
         user = User(name=name, email=email, phone_number=phone)
