@@ -32,3 +32,8 @@ class Card(BaseModel):
     account = ForeignKeyField(Account, backref='cards')
     card_number = CharField(unique=True)
     balance = DecimalField(default=0.0)
+
+class Movements():
+    amount = DecimalField()
+    account = ForeignKeyField(Account, backref='cards')
+    movementType = CharField() #Deposito o gasto
