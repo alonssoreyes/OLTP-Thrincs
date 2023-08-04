@@ -21,7 +21,7 @@ def populate_all():
         acc = create_account(user=test_user, balance=base_balance)
         card1 = assign_new_card(acc, test_user.name)
         card2 = assign_new_card(acc, test_user.name)
-        print(f'New user: {test_user.name}\n Account ID: {acc}\n Balance: {acc.balance}\n Main card: {card1.number}\n Secondary card: {card2.number}' )
+        print(f'New user: {test_user.name}\n Account ID: {acc}\n Balance: {acc.balance}\n Main card: {card1.card_number}\n Secondary card: {card2.card_number}')
 
     print('****Create Users****')
     print(create_user("Alonso Reyes", "alonso.reyes@gmail.com", "3312233456"))
@@ -32,10 +32,10 @@ def populate_all():
 
     print()
     print('****Create Accounts and Cards****')
-    onboard_test_users( 'alonso.reyes@gmail.com', 63000 )
-    onboard_test_users( 'pake.perez@gmail.com', 100000 )
-    onboard_test_users( 'jasmin.sanchez@gmail.com', 3000 )
-    onboard_test_users( 'erick.martinez@gmail.com', 70000 )
-    onboard_test_users( 'mike.castañeda@gmail.com', 3000000 )
+    onboard_test_users('alonso.reyes@gmail.com', 63000)
+    onboard_test_users('pake.perez@gmail.com', 100000)
+    onboard_test_users('jasmin.sanchez@gmail.com', 3000)
+    onboard_test_users('erick.martinez@gmail.com', 70000)
+    onboard_test_users('mike.castañeda@gmail.com', 3000000)
 
     print('\n\n')
