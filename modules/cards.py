@@ -1,7 +1,7 @@
 from models import Card
 from peewee import *
 import random
-
+from .movements import save_movement
 #General actions
 # New card:
 #   > Get User, User.name
@@ -36,7 +36,7 @@ def get_card_by_number(card_number):
     except Card.DoesNotExist:
         raise ValueError("Card does not exist.")
 
-def make_purchase(card_number, amount, security_code):
+def make_purchase(card_number, amount, security_code):  #gasto
     try:
         card = Card.get(Card.card_number == card_number)
         if card.security_code != security_code:
@@ -52,6 +52,22 @@ def make_purchase(card_number, amount, security_code):
             return False
     except Card.DoesNotExist:
         raise ValueError("Card does not exist.")
+    
+def deposit(card_number,amount):
+    try:
+        card = Card.get(Card.card_number == card_number)
+        if card.account.balance >= amount:
+            card.account.balance += amount
+            card.account.save()
+            save_movement(amount, 'Deposito', Card.card_number)
+            print("Payment succesful")
+            return True
+        else:
+            print("Insuficcient funds")
+            return False
+    except Card.DoesNotExist:
+        raise ValueError("Card does not exist.")
+
 
 def update_nip(card_number, new_nip):
     try:

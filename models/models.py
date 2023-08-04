@@ -37,7 +37,7 @@ class Card(BaseModel):
     def __str__(self) -> str:
         return f"Card {self.id}: Account {self.account.id}, Holder Name: {self.holder_name}, Card Number: {self.card_number}, Security Code: {self.security_code}"
 
-class Movements():
+class Movements(BaseModel):
     amount = DecimalField()
     account = ForeignKeyField(Account, backref='cards')
     movementType = CharField() #Deposito o gasto
