@@ -1,5 +1,5 @@
 from database import db
-from models import User, Card, Account
+from models import User, Card, Account, Movements
 from .user import create_user, get_user
 from .account import create_account
 from .cards import assign_new_card
@@ -11,10 +11,10 @@ def populate_all():
     db.connect()
 
     # Clean DB before populating it
-    db.drop_tables([User, Account, Card])
+    db.drop_tables([User, Account, Card, Movements])
 
     # Create new tables
-    db.create_tables([User, Account, Card])
+    db.create_tables([User, Account, Card, Movements])
 
     def onboard_test_users(email, base_balance):
         test_user = get_user(email=email)

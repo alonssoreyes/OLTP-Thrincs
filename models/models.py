@@ -41,3 +41,7 @@ class Movements(BaseModel):
     amount = DecimalField()
     account = ForeignKeyField(Account, backref='cards')
     movementType = CharField() #Deposito o gasto
+    date = DateTimeField()
+
+    def __str__(self) -> str:
+        return f"Movement {self.id}: Amount {self.amount}, Account: {self.account.user.email}, Movement Type: {self.movementType}, Date: {self.date}"

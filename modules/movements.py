@@ -12,22 +12,49 @@ def save_movement(amount, movementType, account): #se puede quitar o no usar
     print(f'Movement from Account: {movement} Amount :{amount} Movement Type: {movementType}')
     pass
 
-def create_movement(amount, movementType, account):
+def create_movement(amount, movementType, account, date):
     try:
-        movement = Movements(amount = amount, movementType=movementType, account = account)
+        movement = Movements(amount = amount, movementType=movementType, account = account, date = date)
         movement.save()
         return movement
     except:
         return "Something went wrong"
 
-def get_movement(account):
+    
+def get_movement(**kwargs):
     try:
-        movement = Movements(account = account)
-        print('Movements: ')
-        print(movement)#aqui me quede ;)
-    except:
-        return "Something went wrong"
+        movement = Movements.get(**kwargs)
+        return movement
+    except Movements.DoesNotExist:
+        print("Movement does not exists in database")
+        return None
+    
+def update_movement(account, date, new_values):
+    if not new_values:
+        print("Invalid parameters")
+        return None
 
-def delete_movement():
+    try:
+        query = Movements.update(new_values).where((account == account) & (date == date))
+        query.execute()
 
-    pass
+        return 'Movement updated'
+
+    except Movements.DoesNotExist:
+        print("Movement does not exists in database")
+        return None
+
+    except ValueError as e:
+        print('Movement could not be updated: ')
+        print(e.args[0])
+        return None
+
+
+def delete_movement(account, date):
+    try:
+        mov = Movements.get((account == account) & (date == date))
+        mov.delete_instance()
+        return 'Movement' + user.get_email() + ' deleted'
+    except Movement.DoesNotExist:
+        print("Movement does not exists in database")
+        return None
