@@ -24,7 +24,7 @@ def get_movement(account):
     try:
         movement = Movements(account = account)
         print('Movements: ')
-        print(movement)
+        print(movement)#aqui me quede ;)
     except:
         return "Something went wrong"
 
