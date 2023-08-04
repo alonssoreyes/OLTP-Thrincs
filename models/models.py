@@ -30,8 +30,12 @@ class Account(BaseModel):
 
 class Card(BaseModel):
     account = ForeignKeyField(Account, backref='cards')
+    security_code = CharField(default='1111')    
     card_number = CharField(unique=True)
-    balance = DecimalField(default=0.0)
+    holder_name = CharField()
+
+    def __str__(self) -> str:
+        return f"Card {self.id}: Account {self.account.id}, Holder Name: {self.holder_name}, Card Number: {self.card_number}, Security Code: {self.security_code}"
 
 class Movements():
     amount = DecimalField()
