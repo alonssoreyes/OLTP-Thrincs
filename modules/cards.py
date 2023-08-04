@@ -31,7 +31,7 @@ def assign_new_card(account_id, holder_name, security_code='1111'):
 def get_card_by_number(card_number):
     try:
         card = Card.get(Card.card_number == card_number)
-        print(f'Card: {card.card_number} Holder:{card.holder_name} Account ID: {card.account}')
+        print(f'Card: {card.card_number} Holder:{card.holder_name} Account ID: {card.account.id}')
         return True
     except Card.DoesNotExist:
         raise ValueError("Card does not exist.")
