@@ -9,6 +9,3 @@ print(get_account(user=test_user))
 update_acount(user=test_user, new_values={'balance': 50})
 print(get_account(user=test_user))
 
-
-def test_user_instance():
-    assert 1==1
