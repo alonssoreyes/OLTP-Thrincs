@@ -20,7 +20,7 @@ class User(BaseModel):
 
 
 class Account(BaseModel):
-    user = ForeignKeyField(User, backref='accounts')
+    user = ForeignKeyField(User, backref='accounts', unique=True)
     balance = DecimalField(default=0.0)
 
     def __str__(self) -> str:
