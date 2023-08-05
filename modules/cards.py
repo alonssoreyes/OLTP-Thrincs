@@ -32,9 +32,10 @@ def get_card_by_number(card_number):
     try:
         card = Card.get(Card.card_number == card_number)
         print(f'Card: {card.card_number} Holder:{card.holder_name} Account ID: {card.account.id}')
-        return True
+        return card
     except Card.DoesNotExist:
-        raise ValueError("Card does not exist.")
+        print("Card does not exist.")
+        return None
 
 def make_purchase(card_number, amount, security_code):  #gasto
     try:
@@ -73,16 +74,20 @@ def update_nip(card_number, new_nip):
     try:
         card = Card.get(Card.card_number == card_number)
         card.security_code = new_nip
-        card.save()
         print("NIP updated")
+        card.save()
+        return "NIP updated"
     except Card.DoesNotExist:
-        raise ValueError("Card does not exist.")
+        print("Card does not exist.")
+        return None
 
 def cancel_card(card_id):
     try:
         card = Card.get_by_id(card_id)
         card.delete_instance()
         print(f'Card {card_id} has been deleted')
+        return f'Card {card_id} has been deleted'
     except Card.DoesNotExist:
-        raise ValueError("Card does not exist.")
+        print("Card does not exist.")
+        return None
 

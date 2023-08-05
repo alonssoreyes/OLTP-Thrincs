@@ -3,6 +3,7 @@ from peewee import IntegrityError
 from models import User, Account
 from database import db
 from modules import create_user, get_user, update_user, delete_user
+db.drop_tables([User,Account])
 
 def test_create_user():
     db.create_tables([User])

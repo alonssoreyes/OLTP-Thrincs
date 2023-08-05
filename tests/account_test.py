@@ -4,6 +4,7 @@ from models import User, Account
 from modules import create_account, get_account,update_acount,delete_account
 from database import db
 
+db.drop_tables([User,Account])
 @pytest.fixture(scope='function')
 def setup_db():
     db.create_tables([User, Account])
