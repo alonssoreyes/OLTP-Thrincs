@@ -62,7 +62,7 @@ def delete_account(user):
     try:
         acc = Account.get(user=user)
         acc.delete_instance()
-        return 'Account for' + user.get_email() + ' deleted'
+        return 'Account for ' + user.get_email() + ' deleted'
     except Account.DoesNotExist:
         print("User does not exists in database")
         return None
