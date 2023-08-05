@@ -6,6 +6,7 @@ class BaseModel(Model):
     class Meta:
         database = db
 
+
 class User(BaseModel):
     name = CharField()
     email = CharField(unique=True)
@@ -14,11 +15,33 @@ class User(BaseModel):
     def __str__(self) -> str:
         return f"User {self.id}: {self.name} <{self.email}>"
 
+    def get_email(self):
+        return self.email
+
+
 class Account(BaseModel):
-    user = ForeignKeyField(User, backref='accounts')
+    user = ForeignKeyField(User, backref='accounts', unique=True)
     balance = DecimalField(default=0.0)
+
+    def __str__(self) -> str:
+        balance = "${:,.2f}".format(self.balance)
+        return f"Account {self.id}: {self.user.email} <{balance}>"
+
 
 class Card(BaseModel):
     account = ForeignKeyField(Account, backref='cards')
+    security_code = CharField(default='1111')    
     card_number = CharField(unique=True)
-    balance = DecimalField(default=0.0)
+    holder_name = CharField()
+
+    def __str__(self) -> str:
+        return f"Card {self.id}: Account {self.account.id}, Holder Name: {self.holder_name}, Card Number: {self.card_number}, Security Code: {self.security_code}"
+
+class Movements(BaseModel):
+    amount = DecimalField()
+    account = ForeignKeyField(Account, backref='cards')
+    movementType = CharField() #Deposito o gasto
+    date = DateTimeField()
+
+    def __str__(self) -> str:
+        return f"Movement {self.id}: Amount {self.amount}, Account: {self.account.user.email}, Movement Type: {self.movementType}, Date: {self.date}"
