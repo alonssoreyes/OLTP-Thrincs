@@ -54,7 +54,7 @@ def delete_movement(account, date):
     try:
         mov = Movements.get((account == account) & (date == date))
         mov.delete_instance()
-        return 'Movement' + user.get_email() + ' deleted'
-    except Movement.DoesNotExist:
+        return f'Movement {mov.id} deleted'
+    except Movements.DoesNotExist:
         print("Movement does not exists in database")
         return None
