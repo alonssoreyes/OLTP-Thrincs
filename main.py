@@ -36,14 +36,13 @@ benefited_balance = "${:,.2f}".format(benefited_balance)
 print(f"Previous benefited balance = ${benefited_balance}")
 new_balance = get_account(user=benefited_user).balance
 new_balance =  "${:,.2f}".format(new_balance)
-print(f"New benefited balance = { new_balance}")
-print('\n')
+print(f"New benefited balance = { new_balance }")
 
 #####################################
 
 
 # gastamos y fondeamos
-print('***  Case 2 ***')
+print('\n***  Case 2 ***')
 test_user = get_user(email='pake.perez@gmail.com')
 date = datetime.now()
 test_account = get_account(user = test_user)
